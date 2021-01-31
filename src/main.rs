@@ -63,8 +63,10 @@ impl Reproject for BoundingBox2D {
         .expect("handle ProjError");
 
         let rect: Rect<f64> = (*self).into();
-        let res: std::result::Result<Vec<Point<f64>>, ProjError> =
-            rect.coords_iter().map(|c| proj.convert(c)).collect();
+        let res: std::result::Result<Vec<Point<f64>>, ProjError> = rect
+            .coords_iter()
+            .map(|c| Ok(Point::from(proj.convert(c)?)))
+            .collect();
 
         // then build new rect from the points here...
         Ok(self.clone())
