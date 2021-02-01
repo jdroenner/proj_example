@@ -8,7 +8,4 @@ edition = "2018"
 
 [dependencies]
 geo = "0.17"
-
-[dependencies.proj]
-git = "https://github.com/georust/proj"
-features = ["geo-types"]
+proj = "0.21.0"
